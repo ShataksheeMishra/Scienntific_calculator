@@ -65,9 +65,10 @@ pipeline {
    post {
        success {
            echo 'Build and tests passed successfully!'
-          body: "The build passed successfully!"
+
             mail to: 'shatakshee.mishra@iiitb.ac.in',
             subject: "SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+            body: "The build passed successfully!"
 
        }
        failure {
@@ -78,6 +79,6 @@ pipeline {
 
        }
    }
-//trial2
+
 
 }
