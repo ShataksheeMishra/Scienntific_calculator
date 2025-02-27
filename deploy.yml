@@ -3,11 +3,10 @@
   remote_user: shatakshee
   become: false
   tasks:
-    - name: Pull Docker Image
-      docker_image:
-        name: "shatakshee/scientific_calculator"
-        source: pull
+    - name: Pull Docker Image using CLI
+      shell: docker pull shatakshee/scientific_calculator
       register: docker_pull_result
+
 
     - name: Display Docker Pull Result
       debug:
