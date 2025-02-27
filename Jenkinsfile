@@ -24,11 +24,7 @@ pipeline {
             steps {
                 sh 'mvn test'
             }
-//             post {
-//                 always {
-//                     junit 'target/surefire-reports/*.xml'  // Captures test results
-//                 }
-//             }
+
         }
         stage('Build Docker Image') {
                     steps {
@@ -49,15 +45,15 @@ pipeline {
                         sh "docker push $DOCKER_IMAGE"
                     }
                 }
-//          stage('Run Ansible Playbook') {
-//                     steps {
-//                         withCredentials([usernamePassword(credentialsId: 'local-user-jenkins', usernameVariable: 'ANSIBLE_USER', passwordVariable: 'ANSIBLE_PASS')]) {
-//                             sh '''
-//                             ansible-playbook -i inventory.ini deploy.yml --extra-vars "ansible_user=$ANSIBLE_USER ansible_ssh_pass=$ANSIBLE_PASS"
-//                             '''
-//                         }
-//                     }
-//                 }
+         stage('Run Ansible Playbook') {
+                    steps {
+                        withCredentials([usernamePassword(credentialsId: 'local-jenkins', usernameVariable: 'ANSIBLE_USER', passwordVariable: 'ANSIBLE_PASS')]) {
+                            sh '''
+                            ansible-playbook -i inventory.ini deploy.yml --extra-vars "ansible_user=$ANSIBLE_USER ansible_ssh_pass=$ANSIBLE_PASS"
+                            '''
+                        }
+                    }
+                }
 
         stage('Deploy') {
             steps {
