@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         MAVEN_HOME = "/usr/share/maven"
+        DOCKER_IMAGE = "shatakshee/scientific_calculator:latest"
 
     }
 
@@ -29,25 +30,25 @@ pipeline {
 //                 }
 //             }
         }
-//         stage('Build Docker Image') {
-//                     steps {
-//                         sh "docker build -t $DOCKER_IMAGE ."
-//                     }
-//                 }
-//
-//                 stage('Login to Docker Hub') {
-//                     steps {
-//                         withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-//                             sh "echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin"
-//                         }
-//                     }
-//                 }
-//
-//                 stage('Push Docker Image') {
-//                     steps {
-//                         sh "docker push $DOCKER_IMAGE"
-//                     }
-//                 }
+        stage('Build Docker Image') {
+                    steps {
+                        sh "docker build -t $DOCKER_IMAGE ."
+                    }
+                }
+
+                stage('Login to Docker Hub') {
+                    steps {
+                        withCredentials([usernamePassword(credentialsId: 'docker-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                            sh "echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin"
+                        }
+                    }
+                }
+
+                stage('Push Docker Image') {
+                    steps {
+                        sh "docker push $DOCKER_IMAGE"
+                    }
+                }
 //          stage('Run Ansible Playbook') {
 //                     steps {
 //                         withCredentials([usernamePassword(credentialsId: 'local-user-jenkins', usernameVariable: 'ANSIBLE_USER', passwordVariable: 'ANSIBLE_PASS')]) {
