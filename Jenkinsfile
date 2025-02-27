@@ -23,11 +23,11 @@ pipeline {
             steps {
                 sh 'mvn test'
             }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'  // Captures test results
-                }
-            }
+//             post {
+//                 always {
+//                     junit 'target/surefire-reports/*.xml'  // Captures test results
+//                 }
+//             }
         }
 //         stage('Build Docker Image') {
 //                     steps {
