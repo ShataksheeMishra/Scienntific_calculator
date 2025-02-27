@@ -65,16 +65,16 @@ pipeline {
    post {
        success {
            echo 'Build and tests passed successfully!'
-//             mail to: 'Rishika.Gupta@iiitb.ac.in',
-//             subject: "SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-//              body: "The build passed successfully!"
+          body: "The build passed successfully!"
+            mail to: 'shatakshee.mishra@iiitb.ac.in',
+            subject: "SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
 
        }
        failure {
            echo 'Build or tests failed!'
-//             mail to: 'Rishika.Gupta@iiitb.ac.in',
-//                     subject: "Build FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-//                     body: "Oops! The build failed. Check the logs for details."
+            mail to: 'shatakshee.mishra@iiitb.ac.in',
+                    subject: "Build FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                    body: "Oops! The build failed. Check the logs for details."
 
        }
    }
