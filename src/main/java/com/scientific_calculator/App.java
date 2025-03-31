@@ -5,7 +5,7 @@ public class App {
     public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
     scientific_calculator calculator = new scientific_calculator();
-
+        scanner.nextLine();
     while (true) {
         System.out.println("\nScientific Calculator");
         System.out.println("1. Square Root (√x)");
