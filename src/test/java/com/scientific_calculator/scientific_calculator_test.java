@@ -28,7 +28,7 @@ import org.junit.jupiter.api.Test;
 
     @Test
     void testPower() {
-        assertEquals(8, calculator.power(2, 3), 0.001);
+        assertEquals(9, calculator.power(3, 2), 0.001);
         assertEquals(1, calculator.power(5, 0), 0.001);
         assertEquals(0.5, calculator.power(2, -1), 0.001);
     }
